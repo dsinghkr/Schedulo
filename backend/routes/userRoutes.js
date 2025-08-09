@@ -8,5 +8,6 @@ router.post('/', userController.create);
 router.put('/:id', userController.update);
 router.delete('/:id', userController.softDelete);
 router.post('/assign-to-team', userController.assignToTeam);
+router.post('/:id/reset-password', userController.resetPassword);
 
 module.exports = router;

@@ -37,6 +37,7 @@ app.get('/api/test-log', (req, res) => {
 app.use('/api/categories', categoryRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/customers', customerRoutes);
+//app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/users', userRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/task-statuses', taskStatusRoutes);

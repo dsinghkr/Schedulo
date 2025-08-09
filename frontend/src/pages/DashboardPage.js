@@ -1,6 +1,6 @@
 import React from 'react';
 import { getUser, clearAuth } from '../utils/auth';
-import { useNavigate, Routes, Route } from 'react-router-dom';
+import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import DashboardLayout from '../components/DashboardLayout';
 import SuperAdminDashboard from '../components/SuperAdminDashboard';
 import AdminDashboard from '../components/AdminDashboard';
@@ -20,8 +20,7 @@ export default function DashboardPage() {
   const navigate = useNavigate();
 
   if (!user) {
-    navigate('/login');
-    return null;
+    return <Navigate to="/login" replace />;
   }
 
   const handleLogout = () => {

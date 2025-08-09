@@ -22,7 +22,7 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const drawerWidth = 220;
+const drawerWidth = 260; // Increased from 220 to 260 for a wider drawer
 
 // Define menu items with role-based visibility
 const getMenuItems = (role) => {
@@ -72,7 +72,7 @@ export default function DashboardLayout({ user, onLogout, children }) {
   const drawer = (
     <div style={{ background: 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', boxShadow: '0 8px 32px 0 rgba(31,38,135,0.10)', borderTopRightRadius: 24, borderBottomRightRadius: 24, borderRight: '2px solid #e3e6ee' }}>
       <Divider />
-      <List sx={{ mt: 0.5 }}>
+      <List sx={{ mt: 0.5, px: 2 }}> {/* Add horizontal padding */}
         {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
             <ListItemButton selected={location.pathname.endsWith(item.path)} onClick={() => navigate(`/dashboard/${item.path}`)} sx={{
@@ -153,7 +153,7 @@ export default function DashboardLayout({ user, onLogout, children }) {
           borderTopRightRadius: 24,
           borderBottomRightRadius: 24,
           borderRight: '2px solid #e3e6ee',
-          mt: '240px', // push nav below header
+          mt: '160px', // Increased to ensure all nav options are visible below the header/logo
         }}
         aria-label="mailbox folders"
       >
@@ -164,7 +164,7 @@ export default function DashboardLayout({ user, onLogout, children }) {
           ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, zIndex: (theme) => theme.zIndex.drawer },
           }}
         >
           {drawer}
@@ -173,7 +173,16 @@ export default function DashboardLayout({ user, onLogout, children }) {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+              zIndex: (theme) => theme.zIndex.drawer,
+              marginTop: '140px', // Visually push down below header
+              borderTopRightRadius: 24,
+              borderBottomRightRadius: 24,
+              borderRight: '2px solid #e3e6ee',
+              background: 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)',
+            },
           }}
           open
         >
